@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+author: "Karl Boncodin"
+date: "8/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##THIS IS A TRIAL FOR THE DATA SET
+
+```{r, echo=FALSE}
+library(readxl)
+NNEW <- read_excel("C:/Users/User/Downloads/ev_workplace_charging_data.xlsx")
+```
+
+```{r, echo=FALSE}
+TOTKWH <- NNEW$kwhTotal
+CHRGTM <- NNEW$chargeTimeHrs
+
+simpolregres <- lm(CHRGTM ~ TOTKWH, data = NNEW)
+summary(simpolregres)
+plot(TOTKWH, CHRGTM, xlab = "Total kwh", ylab = "Charging Time", main = "Charging Time Vs. Total kwh")
+abline(lm(CHRGTM~TOTKWH), col = "red")
+```
+```{r, echo=FALSE}
+TOTSES <- NNEW$totalSessions
+simpleregresio <- lm(TOTSES ~ TOTKWH, data = NNEW)
+summary(simpleregresio)
+plot(TOTKWH, TOTSES, xlab = "Total kwh", ylab = "Total Sessions", main = "Total sessions Vs. Total kwh")
+abline(lm(TOTSES~TOTKWH), col = "red")
+```
+
+```{r, echo=FALSE}
+multiregres <- lm(TOTSES ~ CHRGTM + TOTKWH, data = NNEW)
+summary(multiregres)
+pairs(~TOTSES+CHRGTM+TOTKWH, data=NNEW, main ="NEW")
+```
+
+
+
