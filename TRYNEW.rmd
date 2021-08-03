@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-author: "Karl Boncodin"
+title: "Let's Try"
+author: "Karl Boncodin and Loko Poko"
 date: "8/2/2021"
 output: html_document
 ---
